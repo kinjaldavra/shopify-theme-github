@@ -1,0 +1,64 @@
+
+
+
+<div class="collection-hero">
+  <div class="collection-hero-inner">
+    <div class="collection-hero__text-wrapper">
+       <div class="collection-banner-wrapper">
+          {% if section.settings.image != blank %}
+              <div class="collection-hero-image">
+                 <img class="collection-image" srcset="{%- if section.settings.image.width >= 165 -%}{{ section.settings.image | image_url: width: 165 }} 165w,{%- endif -%}
+                  {%- if section.settings.image.width >= 350 -%}{{ section.settings.image | image_url: width: 350 }} 350w,{%- endif -%}
+                  {%- if section.settings.image.width >= 750 -%}{{ section.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
+                  {%- if section.settings.image.width >= 1200 -%}{{ section.settings.image | image_url: width: 1200 }} 1200w,{%- endif -%}
+                  {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                  {%- if section.settings.image.width >= 2100 -%}{{ section.settings.image | image_url: width: 2100 }} 2100w,{%- endif -%}
+                  {{ section.settings.image | image_url }} {{ section.settings.image.width }}w"
+                  src="{{ section.settings.image | image_url: width: 1500 }}"
+                  sizes="(min-width: {{ settings.page_width }}px)"
+                  alt="{{ section.settings.image.alt | escape }}"
+                  loading="lazy"
+                  width="{{ section.settings.image.width }}"
+                  height="{{ section.settings.image.height }}" >
+               </div>
+            {% else %}
+                <div class="collection-hero-image">
+                 {{ 'image' | placeholder_svg_tag:'collection-image' }}
+               </div>
+            {% endif %}
+           
+           <div class="collection-banner-overlay"></div>
+            <div class="collection-banner-content">
+            <div class="container">
+            <div class="collection-banner-heading">
+               <h1 class="collection-title"> {{ collection.title }} </h1>
+             </div>
+            </div>
+          </div>
+         </div>
+        </div>
+      </div>
+</div>
+
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Banner",
+    "settings": [
+       {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+       }
+    ],
+   "presets": [
+      {
+        "name": "Banner"
+      }
+    ]
+  }
+{% endschema %}
