@@ -87,74 +87,10 @@
       ],
       "name": "Custom Icon With Text",
       "settings": {}
-    },
-    "db_testimonial_XtAeeJ": {
-      "type": "db-testimonial",
-      "blocks": {
-        "feedback_q9cPjp": {
-          "type": "Feedback",
-          "settings": {
-            "image": "shopify://shop_images/Image_61a51b9f-a734-4d01-a0eb-159434ce033f.png",
-            "review_count": 5,
-            "feedback": "<p>The best quality leather for a fraction of the high street price! I’m on my 3rd bag already, I love them that much.</p>",
-            "author": "Sarah B."
-          }
-        },
-        "feedback_xFM9PC": {
-          "type": "Feedback",
-          "settings": {
-            "image": "shopify://shop_images/tony-litvyak-SNTMtVQjDt4-unsplash_1.png",
-            "review_count": 5,
-            "feedback": "<p>The best quality leather for a fraction of the high street price! I’m on my 3rd bag already, I love them that much.</p>",
-            "author": "Sarah B."
-          }
-        },
-        "feedback_CyWw34": {
-          "type": "Feedback",
-          "settings": {
-            "image": "shopify://shop_images/0c754771f8e55efd83c26352f9b33bdec717e299.png",
-            "review_count": 5,
-            "feedback": "<p>The best quality leather for a fraction of the high street price! I’m on my 3rd bag already, I love them that much.</p>",
-            "author": "Sarah B."
-          }
-        },
-        "feedback_XgK7RP": {
-          "type": "Feedback",
-          "settings": {
-            "image": "shopify://shop_images/16af82e099f4a066e2c6c4e0d5510c755c3ca762.jpg",
-            "review_count": 5,
-            "feedback": "<p>The best quality leather for a fraction of the high street price! I’m on my 3rd bag already, I love them that much.</p>",
-            "author": "Sarah B."
-          }
-        },
-        "feedback_KYd4hX": {
-          "type": "Feedback",
-          "settings": {
-            "image": "shopify://shop_images/0c754771f8e55efd83c26352f9b33bdec717e299.png",
-            "review_count": 5,
-            "feedback": "<p>The best quality leather for a fraction of the high street price! I’m on my 3rd bag already, I love them that much.</p>",
-            "author": "Sarah B."
-          }
-        }
-      },
-      "block_order": [
-        "feedback_q9cPjp",
-        "feedback_xFM9PC",
-        "feedback_CyWw34",
-        "feedback_XgK7RP",
-        "feedback_KYd4hX"
-      ],
-      "name": "Custom Testimonials",
-      "settings": {
-        "section_title": "LATEST LUXE ADDITIONS",
-        "section_sub_title": "THE PIECES YOU LOVE",
-        "slide_to_show": 5
-      }
     }
   },
   "order": [
     "hero_banner_eRkYHf",
-    "bd_new_test_pFaDnk",
-    "db_testimonial_XtAeeJ"
+    "bd_new_test_pFaDnk"
   ]
 }
