@@ -87,10 +87,33 @@
       ],
       "name": "Custom Icon With Text",
       "settings": {}
+<<<<<<< HEAD
+=======
+    },
+    "bd_image_with_text_WmcNQ4": {
+      "type": "bd-image-with-text",
+      "name": "Image With text section",
+      "settings": {
+        "heading": "Unlock Exclusive Discounts, Prizes & Experiences",
+        "description": "<p>A members-only club built for players who want more. One subscription. Real perks. A like-minded community.</p>",
+        "button_text": "Enter to win",
+        "button_url": "",
+        "subscribe_button_text": "Enter to win",
+        "subscribe_button_url": "",
+        "richtext": "<p>🎉 Guaranteed 5 winners every month!</p>",
+        "tag_text": "<p>Monthly giveaway – Closing 6th May</p>",
+        "richtext_description": "<p>Summer in Bloom With a Garden Party and a Trip to the RHS Festival worth £2500+</p>"
+      }
+>>>>>>> f34de5fd070b0d93d5e95332504f805e72ae69e3
     }
   },
   "order": [
     "hero_banner_eRkYHf",
+<<<<<<< HEAD
     "bd_new_test_pFaDnk"
+=======
+    "bd_new_test_pFaDnk",
+    "bd_image_with_text_WmcNQ4"
+>>>>>>> f34de5fd070b0d93d5e95332504f805e72ae69e3
   ]
 }
