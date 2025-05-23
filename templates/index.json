@@ -87,10 +87,20 @@
       ],
       "name": "Custom Icon With Text",
       "settings": {}
+    },
+    "db_testimonial_XtAeeJ": {
+      "type": "db-testimonial",
+      "name": "Custom Testimonials",
+      "settings": {
+        "section_title": "LATEST LUXE ADDITIONS",
+        "section_sub_title": "THE PIECES YOU LOVE",
+        "slide_to_show": 5
+      }
     }
   },
   "order": [
     "hero_banner_eRkYHf",
-    "bd_new_test_pFaDnk"
+    "bd_new_test_pFaDnk",
+    "db_testimonial_XtAeeJ"
   ]
 }
