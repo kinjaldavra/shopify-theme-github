@@ -87,8 +87,6 @@
       ],
       "name": "Custom Icon With Text",
       "settings": {}
-<<<<<<< HEAD
-=======
     },
     "bd_image_with_text_WmcNQ4": {
       "type": "bd-image-with-text",
@@ -104,16 +102,11 @@
         "tag_text": "<p>Monthly giveaway – Closing 6th May</p>",
         "richtext_description": "<p>Summer in Bloom With a Garden Party and a Trip to the RHS Festival worth £2500+</p>"
       }
->>>>>>> f34de5fd070b0d93d5e95332504f805e72ae69e3
     }
   },
   "order": [
     "hero_banner_eRkYHf",
-<<<<<<< HEAD
-    "bd_new_test_pFaDnk"
-=======
     "bd_new_test_pFaDnk",
     "bd_image_with_text_WmcNQ4"
->>>>>>> f34de5fd070b0d93d5e95332504f805e72ae69e3
   ]
 }
