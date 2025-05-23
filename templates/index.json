@@ -90,6 +90,20 @@
     },
     "db_testimonial_XtAeeJ": {
       "type": "db-testimonial",
+      "blocks": {
+        "feedback_q9cPjp": {
+          "type": "Feedback",
+          "settings": {
+            "image": "shopify://shop_images/Image_61a51b9f-a734-4d01-a0eb-159434ce033f.png",
+            "review_count": 5,
+            "feedback": "<p>The best quality leather for a fraction of the high street price! I’m on my 3rd bag already, I love them that much.</p>",
+            "author": "Sarah B."
+          }
+        }
+      },
+      "block_order": [
+        "feedback_q9cPjp"
+      ],
       "name": "Custom Testimonials",
       "settings": {
         "section_title": "LATEST LUXE ADDITIONS",
