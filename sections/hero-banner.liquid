@@ -1,0 +1,438 @@
+
+
+<section class="hero-slider-section">
+  <div class="custom-slider-wrapper {% if section.settings.slider_enable %}flickity-enabled{% endif %}" 
+     data-slider-enable="{{ section.settings.slider_enable }}">
+      <div class="custom-slider" id="hero-carousel-{{ section.id }}">
+        {% for block in section.blocks %}
+           <div class="slider-item carousel-cell" {{ block.shopify_attributes }}>
+             <div class="image-wrapper">
+             {% if block.settings.banner_image != blank %}
+               <div class="logo-image-wrapper">
+                  <img class="banner-image" srcset="
+                  {%- if block.settings.banner_image.width >= 165 -%}{{ block.settings.banner_image | image_url: width: 165 }} 165w,{%- endif -%}
+                  {%- if block.settings.banner_image.width >= 750 -%}{{ block.settings.banner_image | image_url: width: 750 }} 750w,{%- endif -%}
+                  {%- if block.settings.banner_image.width >= 1100 -%}{{ block.settings.banner_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+                  {%- if block.settings.banner_image.width >= 1500 -%}{{ block.settings.banner_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                  {%- if block.settings.banner_image.width >= 2200 -%}{{ block.settings.banner_image | image_url: width: 2200 }} 2200w,{%- endif -%}
+                  {%- if block.settings.banner_image.width >= 3000 -%}{{ block.settings.banner_image | image_url: width: 3000 }} 3000w,{%- endif -%}
+                  {{ block.settings.banner_image | image_url }} {{ block.settings.banner_image.width }}w"
+                  sizes="(min-width: {{ settings.page_width }}px) calc({{ settings.page_width }}px - 100px), (min-width: 750px) calc(100vw - 10rem), 100vw"
+                  src="{{ block.settings.banner_image | image_url: width: 1100 }}"
+                  width="{{ block.settings.banner_image.width }}"
+                  height="{{ block.settings.banner_image.height }}"
+                  alt="{{ block.settings.banner_image.alt | escape }}"
+                  loading="lazy">
+                </div>
+              {% else %}
+                <div class="logo-image-wrapper"> 
+                  {{ 'hero-apparel-1' | placeholder_svg_tag: 'banner-image placeholder' }}
+                </div>
+              {% endif %}
+              <div class="slider-content">
+                {% if block.settings.badge_text != blank %}
+                  <span class="badge">{{ block.settings.badge_text }}</span>
+                {% endif %}
+                <h2 class="heading">{{ block.settings.heading }}</h2>
+                
+                {% if block.settings.subheading != blank %}
+                 <div class="subheading-content">
+                  <p class="subheading">{{ block.settings.subheading }}</p>
+                 </div>
+                {% endif %}
+                {% if block.settings.button_label != blank %}
+                  <a href="{{ block.settings.button_link }}" class="button-shop-now">
+                     {{ block.settings.button_label }}
+                     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 15" fill="none"><path d="M16 7.50049H1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.9502 1.47559L16.0002 7.49959L9.9502 13.5246" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="custom-arrow-wrapper">
+        <div class="previous-button custom-arrow" aria-label="Previous">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="14" viewBox="0 0 17 14" fill="none"><path d="M1.25 7.22583H16.25" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7.2998 1.20093L1.2498 7.22493L7.2998 13.2499" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></path></svg>
+        </div>
+        <div class="next-button custom-arrow" aria-label="Next">
+          <svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.75 7.22583H0.75" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.7002 1.20093L15.7502 7.22493L9.7002 13.2499" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></path></svg>
+        </div>
+      </div>
+  </div>
+</section>
+
+
+<style>
+  
+.hero-slider-section .image-wrapper {
+  position: relative;
+}
+
+.hero-slider-section .custom-slider-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-slider-section .custom-slider .slider-item {
+  width: 100%;
+  max-width: 100%;
+}
+
+.hero-slider-section .slider-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  text-align: center;
+  color: #ffffff;
+  max-width: 800px;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.slider-content .badge {
+  display: inline-block;
+  color: #f3c15c;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+  padding: 6px 24px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  backdrop-filter: blur(4px);
+  background: rgb(255 221 100 / 11%);
+  font-family: 'PlusJakartaSans';
+}
+
+.slider-content .heading {
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 14px 0px;
+  color: #ffffff;
+  font-family: 'Bricolage-Grotesque';
+  letter-spacing: 0px;
+}
+
+.slider-content .subheading {
+  font-size: 20px;
+  line-height: 30px;
+  margin: 0 0 40px 0px;
+  color: #ffffff;
+  font-family: 'PlusJakartaSans';
+  font-weight: 400;
+  letter-spacing: 0px;
+  max-width: 690px;
+  margin: 0 auto;
+}
+
+.slider-content .button-shop-now {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 12px;
+  border: 1px solid #ffffff;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: 'PlusJakartaSans';
+  letter-spacing: 0px;
+  font-weight: 500;
+  padding: 10px 24px;
+  background: transparent;
+  border-radius: 50px;
+  transition: background 0.3s ease, color 0.3s ease;
+  backdrop-filter: blur(12px);
+}
+
+.slider-content .button-shop-now:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.slider-content .button-shop-now:hover svg path {
+  stroke: #000000;
+}
+
+.hero-slider-section .logo-image-wrapper {
+  position: relative;
+  padding-bottom: 41.3%;
+}
+
+.hero-slider-section .logo-image-wrapper .banner-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.hero-slider-section .flickity-page-dots {
+  bottom: 32px;
+}
+
+.hero-slider-section .flickity-page-dots .dot {
+    width: 12px;
+    height: 12px;
+    margin: 0 4px;
+    background: #FFFFFF42 !important;
+}
+
+.hero-slider-section  .flickity-page-dots .dot.is-selected {
+    background: #D5E6D6;
+}
+
+.hero-slider-section .subheading-content {
+    margin: 0 0 40px 0px;
+}
+
+.hero-slider-section .subheading-content p {
+  margin: 0px;
+} 
+
+.custom-arrow-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  pointer-events: none; /* allow clicks through empty areas */
+}
+
+.custom-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgb(255 255 255 / 40%);
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  pointer-events: auto; /* enable clicking on the buttons */
+  cursor: pointer;
+  z-index: 5;
+}
+
+.previous-button {
+  left: 15px;
+}
+
+.next-button {
+  right: 15px;
+}
+
+.custom-arrow svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.custom-arrow:hover {
+  background-color: #f0f0f0;
+}
+
+.custom-slider-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.custom-arrow-wrapper {
+  display: none;
+}
+
+.custom-arrow-wrapper.arrows-visible {
+  display: flex; /* or inline-flex, block, etc. depending on your layout */
+}
+
+
+@media screen and (max-width: 1200px) {
+  .hero-slider-section .logo-image-wrapper {
+    padding-bottom: 50%;
+  }
+}
+
+@media screen and (max-width: 1124px) {
+  .hero-slider-section .logo-image-wrapper {
+    padding-bottom: 60%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero-slider-section .logo-image-wrapper {
+    padding-bottom: 100%;
+    position: relative;
+  }
+
+  .slider-content .heading {
+    font-size: 34px;
+    margin: 0 0 12px 0px;
+  }
+
+  .slider-content .subheading {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 28px;
+  }
+
+  .slider-content .button-shop-now {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px 20px;
+  }
+
+  .hero-slider-section .slider-content {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .hero-slider-section .subheading-content {
+    margin: 0 0 28px 0px;
+  }
+
+  .hero-slider-section .flickity-page-dots {
+    display: none;
+  }
+
+  .hero-slider-section .custom-arrow-wrapper {
+    display: none;
+  }
+  
+}
+  
+@media screen and (max-width: 425px) {
+  
+ .hero-slider-section .logo-image-wrapper {
+    padding-bottom: 148%;
+    position: relative;
+  }
+  
+}
+
+  
+  
+</style>
+
+<script>
+  $(document).ready(function () {
+    function initCustomSlider() {
+      var $slider = $('#hero-carousel-{{ section.id }}');
+      var $wrapper = $slider.closest('.custom-slider-wrapper');
+      var $customArrows = $wrapper.find('.custom-arrow-wrapper');
+      var screenWidth = $(window).width();
+
+      if ($slider.data('flickity')) {
+        $slider.flickity('destroy');
+        $slider.removeClass('flickity-enabled-js');
+      }
+
+      var slideCount = $slider.find('.carousel-cell').length;
+
+      $slider
+        .addClass('flickity-enabled-js')
+        .flickity({
+          cellAlign: screenWidth < 768 ? 'left' : 'left',
+          contain: true,
+          wrapAround: true,
+          pageDots: true,
+          prevNextButtons: false
+        });
+
+      // Custom arrow actions
+      $customArrows.find('.previous-button').off('click').on('click', function () {
+        $slider.flickity('previous');
+      });
+
+      $customArrows.find('.next-button').off('click').on('click', function () {
+        $slider.flickity('next');
+      });
+
+      // Toggle arrow visibility using class
+      if (slideCount >= 2) {
+        $customArrows.addClass('arrows-visible');
+      } else {
+        $customArrows.removeClass('arrows-visible');
+      }
+    }
+
+    initCustomSlider();
+
+    $(window).on('resize', function () {
+      initCustomSlider();
+    });
+
+    document.addEventListener('shopify:section:load', function (event) {
+      if (event.detail.sectionId === '{{ section.id }}') {
+        initCustomSlider();
+      }
+    });
+  });
+</script>
+
+
+
+
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "slider_enable",
+      "label": "Enable slider",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner_image",
+          "label": "Banner Image"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text",
+          "default": "SILVER BIRCH TREES"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "It's best in show at MailOrderTrees"
+        },
+        {
+          "type": "textarea",
+          "id": "subheading",
+          "label": "Subheading",
+          "default": "Lorem ipsum dolor sit amet..."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button",
+          "default": "Shop now"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner",
+    }
+  ]
+}
+{% endschema %}

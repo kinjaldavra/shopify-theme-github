@@ -1,0 +1,256 @@
+
+
+
+<div class="header-main-menu">
+  {%- unless use_sidebar_menu -%}
+    {%- assign main_menu_handle = section.settings.menu | default: 'main-menu' -%}
+    {%- assign main_menu = linklists[main_menu_handle] -%}
+
+    {%- assign mega_menu_names = '' -%}
+
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'mega_menu' -%}
+        {%- assign trim_mega_menu_name = block.settings.navigation_mega_menu | strip -%}
+        {%- assign mega_menu_names = mega_menu_names | append: trim_mega_menu_name | append: ',' -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- assign mega_menu_names = mega_menu_names | downcase | split: ',' | compact -%}
+
+    <nav class="header-menu-nav">
+      <ul class="megamenu-list">
+        {%- for link in main_menu.links -%}
+          {%- assign downcased_link_title = link.title | downcase | strip -%}
+          {%- assign use_mega_menu = false -%}
+
+          {%- capture menu_item_dropdown -%}
+              {%- if mega_menu_names contains downcased_link_title -%}
+                {%- if section.blocks.size > 0 -%}
+                 {%- for block in section.blocks -%}
+                    {%- assign downcased_mega_menu_name = block.settings.navigation_mega_menu | downcase -%}
+
+                    {%- if downcased_mega_menu_name != downcased_link_title -%}
+                      {%- continue -%}
+                    {%- endif -%}
+
+                    {%- assign use_mega_menu = true -%}
+                    {%- assign image_count = 0 -%}
+
+                    {%- if block.settings.menu_banner1 -%}
+                      {%- assign image_count = image_count | plus: 1 -%}
+                    {%- endif -%}
+          
+                    <div class="megamenu-dropdown nav-{{- link.title | handleize | downcase -}}">
+                      <div class="megamenu-wrapper">
+                       <div class="megamenu-dropdown-items menu-link-{{ link.links.size }} {% if block.settings.menu_banner1 == blank %}without-banner{% endif %}">
+                         {%- for sub_link in link.links -%}
+                           <div class="megamenu-items">
+                               <a href="{{ sub_link.url }}" class="menu-heading">{{ sub_link.title | title }}</a>
+                               {%- if sub_link.links != blank -%}
+                                 <ul class="sublink-list">
+                                   {%- for sub_sub_link in sub_link.links -%}
+                                     <li class="sublink-items">
+                                       <a href="{{ sub_sub_link.url }}" class="sub-link">{{ sub_sub_link.title | escape }}</a>
+                                     </li>
+                                   {%- endfor -%}
+                                 </ul>
+                               {%- endif -%}
+                           </div>
+                         {%- endfor -%}
+                       </div>
+                         {%- if image_count > 0 -%}
+                            {%- if block.settings.menu_banner1 -%}
+                               <div class="header-image-section {% if block.settings.color_image == 'color' %}color-section{% else %}main-image-section{% endif %}">
+                                 <div class="header-image-wrapper">
+                                   <a class="megamenu-link" href="{% if block.settings.megamenu_button_url != blank %}{{ block.settings.megamenu_button_url }}{% else %}javascript:void(0);{% endif %}">
+                                    {% if block.settings.banner_sale != blank %}
+                                     <div class="banner-sale-title">
+                                       {{ block.settings.banner_sale }}
+                                     </div>
+                                    {% endif %}
+                                    <div class="megamenu-image-section">
+                                      <img class="banner-image"
+                                         srcset="{%- if block.settings.menu_banner1.width >= 180 -%}{{ block.settings.menu_banner1 | img_url: '180x' }} 180w,{%- endif -%}
+                                                 {%- if block.settings.menu_banner1.width >= 360 -%}{{ block.settings.menu_banner1 | img_url: '360x' }} 360w,{%- endif -%}
+                                                 {%- if block.settings.menu_banner1.width >= 540 -%}{{ block.settings.menu_banner1 | img_url: '540x' }} 540w{%- endif -%}"
+                                         src="{{ block.settings.menu_banner1 | img_url: '180x' }}"
+                                         loading="lazy"
+                                         alt="{{ block.settings.menu_banner1.alt | escape }}">
+                                    </div>
+                                    
+                                     <div class="banner-content">
+                                         {% if block.settings.banner_title1 != blank %}
+                                          <div class="banner-title">
+                                             {{ block.settings.banner_title1 }}
+                                          </div>
+                                        {% endif %}
+                                         {% if block.settings.banner_subtitle1 != blank %}
+                                           <div class="banner-sub-title">
+                                             {{ block.settings.banner_subtitle1 }}
+                                           </div>
+                                       {% endif %}
+                                     </div>
+                                   </a>
+                                 </div>
+                                 <div class="color-main-section">
+                                   <p class="colot-title">{{ block.settings.color_title }}</p>
+                                   <ul class="color-main-wrapper">
+                                     {% if block.settings.color_url1 != black %}
+                                       <li class="color-item">
+                                         <a href="{{ block.settings.color_url1 }}">
+                                           <span class="color-item-wrapper" style="background: {{ block.settings.background_color1 }};"></span>
+                                         </a>
+                                       </li>
+                                      {% endif %}
+                                     {% if block.settings.color_url2 != black %}
+                                       <li class="color-item">
+                                         <a href="{{ block.settings.color_url2 }}">
+                                           <span class="color-item-wrapper" style="background: {{ block.settings.background_color2 }};"></span>
+                                         </a>
+                                       </li>
+                                      {% endif %}
+                                     {% if block.settings.color_url3 != black %}
+                                       <li class="color-item">
+                                         <a href="{{ block.settings.color_url3 }}">
+                                           <span class="color-item-wrapper" style="background: {{ block.settings.background_color3 }};"></span>
+                                         </a>
+                                       </li>
+                                      {% endif %}
+                                      {% if block.settings.color_url4 != black %}
+                                       <li class="color-item">
+                                         <a href="{{ block.settings.color_url4 }}">
+                                           <span class="color-item-wrapper" style="background: {{ block.settings.background_color4 }};"></span>
+                                         </a>
+                                       </li>
+                                      {% endif %}
+                                      {% if block.settings.color_url5 != black %}
+                                       <li class="color-item">
+                                         <a href="{{ block.settings.color_url5 }}">
+                                           <span class="color-item-wrapper" style="background: {{ block.settings.background_color5 }};"></span>
+                                         </a>
+                                       </li>
+                                      {% endif %}
+                                      {% if block.settings.color_url6 != black %}
+                                       <li class="color-item">
+                                         <a href="{{ block.settings.color_url6 }}">
+                                           <span class="color-item-wrapper" style="background: {{ block.settings.background_color6 }};"></span>
+                                         </a>
+                                       </li>
+                                      {% endif %}
+                                     {% if block.settings.color_url7 != black %}
+                                       <li class="color-item">
+                                         <a href="{{ block.settings.color_url7 }}">
+                                           <span class="color-item-wrapper" style="background: {{ block.settings.background_color7 }};"></span>
+                                         </a>
+                                       </li>
+                                      {% endif %}
+                                      {% if block.settings.color_url8 != black %}
+                                       <li class="color-item">
+                                         <a href="{{ block.settings.color_url8 }}">
+                                           <span class="color-item-wrapper" style="background: {{ block.settings.background_color8 }};"></span>
+                                         </a>
+                                       </li>
+                                      {% endif %}
+                                      {% if block.settings.color_url9 != black %}
+                                       <li class="color-item">
+                                         <a href="{{ block.settings.color_url9 }}">
+                                           <span class="color-item-wrapper" style="background: {{ block.settings.background_color9}};"></span>
+                                         </a>
+                                       </li>
+                                      {% endif %}
+                                      {% if block.settings.color_url10 != black %}
+                                       <li class="color-item">
+                                         <a href="{{ block.settings.color_url10 }}">
+                                           <span class="color-item-wrapper" style="background: {{ block.settings.background_color10}};"></span>
+                                         </a>
+                                       </li>
+                                      {% endif %}
+                                   </ul>
+                                 </div>
+                               </div>
+                            {%- endif -%}
+                           {%- endif -%}
+                        </div>
+                      </div>
+                   {%- endfor -%}
+                  {% endif %}
+                
+                {%- elsif link.links != blank -%}
+                  <div class="dropdown-menu">
+                     <ul class="dropdown-linklist">
+                        {%- for sub_link in link.links -%}
+                          <li class="dropdown-linklist-item">
+                            <a href="{{ sub_link.url }}" class="dropdown-menu-link">
+                              <span class="sub-menu-link">{{ sub_link.title | escape }}</span>
+                              {% if sub_link.links != blank %}
+                                <svg width="16" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 6L8.5 10L12.5 6" stroke="#434F66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                              {% endif %}
+                            </a>
+                            {%- if sub_link.links != blank -%}
+                              <div class="dropdownmenu" aria-hidden="true">
+                                <ul class="linklist">
+                                  {%- for sub_sub_link in sub_link.links -%}
+                                    <li class="linklist-items">
+                                      <a href="{{ sub_sub_link.url }}" class="link">{{ sub_sub_link.title | escape }}</a>
+                                    </li>
+                                  {%- endfor -%}
+                                </ul>
+                              </div>
+                            {%- endif -%}
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                  </div>
+                {%- endif -%}
+              {%- endcapture -%}
+
+          {%- liquid
+            assign has_only_childlinks = false
+            if link.links != blank
+              for childlink in link.links
+                if childlink.links == blank
+                  assign has_only_childlinks = true
+                endif
+              endfor
+            endif
+          -%}
+
+          <li class="list-menu-item list-menu-{{ link.title | handleize }} {% if use_mega_menu == false %}simple-menu{% endif %}">
+            {% if use_mega_menu %}
+              <a
+                href="{{ link.url }}"
+                class="header-menu-items {% if use_mega_menu %} has-megmenu {% endif %}{% if link.links == blank and link.current %} is-active {% endif %}"
+              >
+                {%- if use_mega_menu or menu_item_dropdown == blank -%}
+                  <span class="main-menu-link {%- if link.current %} menu-item-active{%- endif -%}">
+                    {{ link.title | escape }}
+                    <svg width="16" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4.5 6L8.5 10L12.5 6" stroke="#434F66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                {%- endif -%}
+              </a>
+            {% else %}
+              <a
+                href="{{ link.url }}"
+                class="header-menu-list {% if link.links == blank and link.current %} is-active{% endif %}"
+              >
+                <span class="main-menu-link {%- if link.current %} active-menu-item{%- endif -%}">
+                  {{ link.title | escape }}
+                  {% if link.links != blank %}
+                    <svg width="16" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4.5 6L8.5 10L12.5 6" stroke="#434F66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {% endif %}
+                </span>
+              </a>
+            {% endif %}
+            {{- menu_item_dropdown -}}
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    {{- localization_form -}}
+  {%- endunless -%}
+</div>
