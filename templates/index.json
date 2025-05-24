@@ -102,11 +102,46 @@
         "tag_text": "<p>Monthly giveaway – Closing 6th May</p>",
         "richtext_description": "<p>Summer in Bloom With a Garden Party and a Trip to the RHS Festival worth £2500+</p>"
       }
+    },
+    "bd_new_test_section_7PtidR": {
+      "type": "bd-new-test-section",
+      "blocks": {
+        "column_XYJbg9": {
+          "type": "Column",
+          "settings": {
+            "description": ""
+          }
+        },
+        "column_9iKUV8": {
+          "type": "Column",
+          "settings": {
+            "description": ""
+          }
+        },
+        "column_gGFRU6": {
+          "type": "Column",
+          "settings": {
+            "description": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_XYJbg9",
+        "column_9iKUV8",
+        "column_gGFRU6"
+      ],
+      "name": "Product With Text",
+      "settings": {
+        "heading": "<p>newwww</p>",
+        "desktop_image": "shopify://shop_images/Image_61a51b9f-a734-4d01-a0eb-159434ce033f.png",
+        "mobile_image": "shopify://shop_images/0c754771f8e55efd83c26352f9b33bdec717e299.png"
+      }
     }
   },
   "order": [
     "hero_banner_eRkYHf",
     "bd_new_test_pFaDnk",
-    "bd_image_with_text_WmcNQ4"
+    "bd_image_with_text_WmcNQ4",
+    "bd_new_test_section_7PtidR"
   ]
 }
