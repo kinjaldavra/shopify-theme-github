@@ -1,0 +1,358 @@
+{{ 'home-product-with-text.css' | asset_url | stylesheet_tag }}
+
+
+<section class="home-product-with-text-section">
+    <div class="scrolling-wrapper">
+      <div class="scrolling-text-container" id="scrollingContainer">
+         <div class="scrolling-text" id="scrollingText"> {{ section.settings.heading }} </div>
+      </div>
+    </div>
+    <div class="image-section">
+      <div class="desktop-image {% if section.settings.mobile_image  != blank %} dekstop-hide-image {% endif %}">
+        {% if section.settings.desktop_image != blank %}
+          <div class="image-wrapper">
+            <img class="image" srcset="{%- if section.settings.desktop_image.width >= 165 -%}{{ section.settings.desktop_image | image_url: width: 165 }} 165w,{%- endif -%}
+            {%- if section.settings.desktop_image.width >= 350 -%}{{ section.settings.desktop_image | image_url: width: 350 }} 350w,{%- endif -%}
+            {%- if section.settings.desktop_image.width >= 750 -%}{{ section.settings.desktop_image | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if section.settings.desktop_image.width >= 1200 -%}{{ section.settings.desktop_image | image_url: width: 1200 }} 1200w,{%- endif -%}
+            {%- if section.settings.desktop_image.width >= 1500 -%}{{ section.settings.desktop_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+            {%- if section.settings.desktop_image.width >= 2100 -%}{{ section.settings.desktop_image | image_url: width: 2100 }} 2100w,{%- endif -%}
+            {{ section.settings.desktop_image | image_url }} {{ section.settings.desktop_image.width }}w"
+            src="{{ section.settings.desktop_image | image_url: width: 1500 }}"
+            sizes="(min-width: {{ settings.page_width }}px)"
+            alt="{{ section.settings.desktop_image.alt | escape }}"
+            loading="lazy"
+            width="{{ section.settings.desktop_image.width }}"
+            height="{{ section.settings.desktop_image.height }}">
+         </div>
+        {% else %}
+        <div class="image-wrapper">
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'main-image main-image-svg' }}
+        </div>
+       {% endif %}
+      </div>
+      <div class="mobile-image">
+        {% if section.settings.mobile_image != blank %}
+          <div class="image-wrapper">
+            <img class="image" srcset="{%- if section.settings.mobile_image.width >= 165 -%}{{ section.settings.mobile_image | image_url: width: 165 }} 165w,{%- endif -%}
+            {%- if section.settings.mobile_image.width >= 350 -%}{{ section.settings.mobile_image | image_url: width: 350 }} 350w,{%- endif -%}
+            {%- if section.settings.mobile_image.width >= 750 -%}{{ section.settings.mobile_image | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if section.settings.mobile_image.width >= 1200 -%}{{ section.settings.mobile_image | image_url: width: 1200 }} 1200w,{%- endif -%}
+            {%- if section.settings.mobile_image.width >= 1500 -%}{{ section.settings.mobile_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+            {%- if section.settings.mobile_image.width >= 2100 -%}{{ section.settings.mobile_image | image_url: width: 2100 }} 2100w,{%- endif -%}
+            {{ section.settings.mobile_image | image_url }} {{ section.settings.mobile_image.width }}w"
+            src="{{ section.settings.mobile_image | image_url: width: 1500 }}"
+            sizes="(min-width: {{ settings.page_width }}px)"
+            alt="{{ section.settings.mobile_image.alt | escape }}"
+            loading="lazy"
+            width="{{ section.settings.mobile_image.width }}"
+            height="{{ section.settings.mobile_image.height }}" >
+          </div>
+        {% endif %}
+      </div>
+   </div>
+   <div class="bottom-content">
+   <div class="container">
+      <div class="row">
+        {% for block in section.blocks %}
+         <div class="col-4 block-{{ forloop.index }}">
+           <div class="col-wrapper">
+             <div class="description"> {{ block.settings.description }} </div>
+           </div>
+         </div>
+       {% endfor %}
+      </div>
+   </div>
+  </div>
+</section>
+
+<style>
+
+    .home-product-with-text-section {
+    background: #151518;
+    color: #ffffff;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 90px;
+}
+
+.home-product-with-text-section .container {
+    padding: 0px 22px;
+}
+
+.home-product-with-text-section .row {
+    margin: 0px -6px;
+}
+
+.home-product-with-text-section .row .col-4 {
+    flex: 0 0 25%;
+    max-width: 25%;
+    padding: 0px 6px;
+}
+
+.home-product-with-text-section .row .col-4.block-2 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 0px 6px;
+}
+
+.home-product-with-text-section .row .col-4 .col-wrapper {
+    padding: 40px;
+    height: 100%;
+    width: 100%;
+    border-radius: 30px;
+    background: var(--white-light, rgba(255, 255, 255, 0.06));
+    box-shadow: 0px 20px 43px 0px rgba(18, 12, 57, 0.04);
+}
+
+.home-product-with-text-section .row .col-4 .col-wrapper .description strong {
+    border-radius: 6px;
+    background: rgba(250, 204, 0, 0.20);
+    font-weight: 400;
+    padding: 1px 5px;
+    border-radius: 5px;
+}
+
+.home-product-with-text-section .scrolling-text strong  {
+    font-weight: 400;
+    color: #FACC00;
+}
+
+.home-product-with-text-section .bottom-content {
+    padding-bottom: 52px;
+}
+
+.home-product-with-text-section .scrolling-text p{
+    font-size: 102px;
+    line-height: 108.52px;
+    font-weight: 400;
+    margin: 0px;
+    font-family: 'EngraversGothic-BT';
+}
+
+.home-product-with-text-section .row .col-4 .col-wrapper .description p {
+    margin: 0px;
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 400;
+    font-family: 'Avenir';
+}
+
+.top-content {
+   overflow: hidden;
+}
+
+.scrolling-text {
+    animation: marquee 10s linear infinite;
+}
+
+.home-product-with-text-section  .image-wrapper:after {
+   content:'';
+   padding-bottom: 30%;
+   display: block;
+}
+
+.home-product-with-text-section .desktop-image  .image-wrapper {
+    position: relative;
+}
+
+.home-product-with-text-section .image-wrapper .image {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: -30.666667%;
+}
+
+@keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+  
+    100% {
+      transform: translateX(-100%);
+    }
+}
+
+.home-product-with-text-section .mobile-image {
+    display: none;
+}
+
+.home-product-with-text-section .desktop-image {
+    display: block;
+}
+
+.home-product-with-text-section .mobile-image {
+    display: none;
+}
+
+.scrolling-text-container {
+    width: 100%;
+    display: flex;
+    position: relative;
+    white-space: nowrap;
+}
+
+@media only screen and (max-width: 1024px) {
+
+  .home-product-with-text-section .row .col-4 .col-wrapper {
+      padding: 40px 20px;
+  }
+
+  .home-product-with-text-section .scrolling-text p {
+    font-size: 70px;
+    line-height: 70.52px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .home-product-with-text-section .mobile-image {
+      display: block;
+  }
+
+  .home-product-with-text-section .mobile-image {
+      display: block;
+  }
+
+  .home-product-with-text-section .dekstop-hide-image {
+      display: none;
+  }
+
+  .home-product-with-text-section .row {
+    margin: 0px;
+  }
+
+  .home-product-with-text-section .row .col-4.block-2 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0px;
+  }
+
+  .home-product-with-text-section .row .col-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0px;
+    margin-bottom: 12px;
+  }
+
+  .home-product-with-text-section .row .col-4 .col-wrapper {
+    padding: 40px 20px;
+    height: 100%;
+    width: 100%;
+  }
+
+  .home-product-with-text-section .scrolling-text p {
+    font-size: 42px;
+    line-height: 44.05px;
+  }
+
+  .home-product-with-text-section .container {
+    padding: 0px 16px;
+  }
+
+  .home-product-with-text-section .image-wrapper .image {
+    margin-top: -35%;
+  }
+
+  .home-product-with-text-section .image-wrapper:after {
+    content: "";
+    padding-bottom: 42%;
+    display: block;
+  }
+
+  .home-product-with-text-section {
+    margin-bottom: 60px;
+  }
+  
+}
+
+ @media only screen and (max-width: 375px) {
+
+  .home-product-with-text-section .image-wrapper .image {
+    margin-top: -30.666667%;
+  }
+
+  .home-product-with-text-section .image-wrapper:after {
+    content: "";
+    padding-bottom: 45%;
+    display: block;
+  }
+
+  
+}
+
+
+</style>
+
+<script>
+  
+  // Function to duplicate content and start scrolling
+  function startScrolling() {
+    const container = document.getElementById('scrollingContainer');
+    const content = document.getElementById('scrollingText');
+
+     // Duplicate the content five times
+    for (let i = 0; i < 4; i++) {
+      const clonedContent = content.cloneNode(true);
+      container.appendChild(clonedContent);
+    }
+
+    // Start scrolling animation
+      container.style.animationPlayState = 'running';
+    }
+
+    // Call the function to start scrolling
+  startScrolling();
+  
+</script>
+
+{% schema %}
+{
+   "name":"Product With Text",
+   "settings":[
+      {
+         "type":"richtext",
+         "id":"heading",
+         "label":"Heading"
+      },
+      {
+         "type":"image_picker",
+         "id":"desktop_image",
+         "label":"Image"
+      },
+      {
+         "type":"image_picker",
+         "id":"mobile_image",
+         "label":"Image"
+      }
+   ],
+   "blocks":[
+      {
+         "name":"Column",
+         "type":"Column",
+         "settings":[
+            {
+               "type":"richtext",
+               "id":"description",
+               "label":"Description"
+            }
+         ]
+      }
+   ],
+   "presets":[
+      {
+         "name":"Product With Text"
+      }
+   ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
